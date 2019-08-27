@@ -1,0 +1,631 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9A2E6DD12305016F00764A08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E6DD02305016F00764A08 /* AppDelegate.swift */; };
+		9A2E6DD32305016F00764A08 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E6DD22305016F00764A08 /* ViewController.swift */; };
+		9A2E6DD62305016F00764A08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A2E6DD42305016F00764A08 /* Main.storyboard */; };
+		9A2E6DD82305017000764A08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A2E6DD72305017000764A08 /* Assets.xcassets */; };
+		9A2E6DDB2305017000764A08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A2E6DD92305017000764A08 /* LaunchScreen.storyboard */; };
+		9A2E6DE02305017000764A08 /* Quinn WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 9A2E6DDF2305017000764A08 /* Quinn WatchKit App.app */; };
+		9A2E6DE62305017000764A08 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A2E6DE42305017000764A08 /* Interface.storyboard */; };
+		9A2E6DE82305017100764A08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A2E6DE72305017100764A08 /* Assets.xcassets */; };
+		9A2E6DEF2305017100764A08 /* Quinn WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9A2E6DEE2305017100764A08 /* Quinn WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9A2E6DF42305017100764A08 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E6DF32305017100764A08 /* InterfaceController.swift */; };
+		9A2E6DF62305017100764A08 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E6DF52305017100764A08 /* ExtensionDelegate.swift */; };
+		9A2E6DF82305017100764A08 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E6DF72305017100764A08 /* ComplicationController.swift */; };
+		9A2E6DFA2305017200764A08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A2E6DF92305017200764A08 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9A2E6DE12305017000764A08 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A2E6DC52305016F00764A08 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A2E6DDE2305017000764A08;
+			remoteInfo = "Quinn WatchKit App";
+		};
+		9A2E6DF02305017100764A08 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A2E6DC52305016F00764A08 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A2E6DED2305017100764A08;
+			remoteInfo = "Quinn WatchKit Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9A2E6E012305017200764A08 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				9A2E6DEF2305017100764A08 /* Quinn WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A2E6E052305017200764A08 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				9A2E6DE02305017000764A08 /* Quinn WatchKit App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		9A2E6DCD2305016F00764A08 /* Quinn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Quinn.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A2E6DD02305016F00764A08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9A2E6DD22305016F00764A08 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9A2E6DD52305016F00764A08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9A2E6DD72305017000764A08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9A2E6DDA2305017000764A08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9A2E6DDC2305017000764A08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A2E6DDF2305017000764A08 /* Quinn WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Quinn WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A2E6DE52305017000764A08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		9A2E6DE72305017100764A08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9A2E6DE92305017100764A08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A2E6DEE2305017100764A08 /* Quinn WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Quinn WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A2E6DF32305017100764A08 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		9A2E6DF52305017100764A08 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		9A2E6DF72305017100764A08 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		9A2E6DF92305017200764A08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9A2E6DFB2305017200764A08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9A2E6DCA2305016F00764A08 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A2E6DEB2305017100764A08 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9A2E6DC42305016F00764A08 = {
+			isa = PBXGroup;
+			children = (
+				9A2E6DCF2305016F00764A08 /* Quinn */,
+				9A2E6DE32305017000764A08 /* Quinn WatchKit App */,
+				9A2E6DF22305017100764A08 /* Quinn WatchKit Extension */,
+				9A2E6DCE2305016F00764A08 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9A2E6DCE2305016F00764A08 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A2E6DCD2305016F00764A08 /* Quinn.app */,
+				9A2E6DDF2305017000764A08 /* Quinn WatchKit App.app */,
+				9A2E6DEE2305017100764A08 /* Quinn WatchKit Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A2E6DCF2305016F00764A08 /* Quinn */ = {
+			isa = PBXGroup;
+			children = (
+				9A2E6DD02305016F00764A08 /* AppDelegate.swift */,
+				9A2E6DD22305016F00764A08 /* ViewController.swift */,
+				9A2E6DD42305016F00764A08 /* Main.storyboard */,
+				9A2E6DD72305017000764A08 /* Assets.xcassets */,
+				9A2E6DD92305017000764A08 /* LaunchScreen.storyboard */,
+				9A2E6DDC2305017000764A08 /* Info.plist */,
+			);
+			path = Quinn;
+			sourceTree = "<group>";
+		};
+		9A2E6DE32305017000764A08 /* Quinn WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				9A2E6DE42305017000764A08 /* Interface.storyboard */,
+				9A2E6DE72305017100764A08 /* Assets.xcassets */,
+				9A2E6DE92305017100764A08 /* Info.plist */,
+			);
+			path = "Quinn WatchKit App";
+			sourceTree = "<group>";
+		};
+		9A2E6DF22305017100764A08 /* Quinn WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				9A2E6DF32305017100764A08 /* InterfaceController.swift */,
+				9A2E6DF52305017100764A08 /* ExtensionDelegate.swift */,
+				9A2E6DF72305017100764A08 /* ComplicationController.swift */,
+				9A2E6DF92305017200764A08 /* Assets.xcassets */,
+				9A2E6DFB2305017200764A08 /* Info.plist */,
+			);
+			path = "Quinn WatchKit Extension";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9A2E6DCC2305016F00764A08 /* Quinn */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A2E6E062305017200764A08 /* Build configuration list for PBXNativeTarget "Quinn" */;
+			buildPhases = (
+				9A2E6DC92305016F00764A08 /* Sources */,
+				9A2E6DCA2305016F00764A08 /* Frameworks */,
+				9A2E6DCB2305016F00764A08 /* Resources */,
+				9A2E6E052305017200764A08 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9A2E6DE22305017000764A08 /* PBXTargetDependency */,
+			);
+			name = Quinn;
+			productName = Quinn;
+			productReference = 9A2E6DCD2305016F00764A08 /* Quinn.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9A2E6DDE2305017000764A08 /* Quinn WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A2E6E022305017200764A08 /* Build configuration list for PBXNativeTarget "Quinn WatchKit App" */;
+			buildPhases = (
+				9A2E6DDD2305017000764A08 /* Resources */,
+				9A2E6E012305017200764A08 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9A2E6DF12305017100764A08 /* PBXTargetDependency */,
+			);
+			name = "Quinn WatchKit App";
+			productName = "Quinn WatchKit App";
+			productReference = 9A2E6DDF2305017000764A08 /* Quinn WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		9A2E6DED2305017100764A08 /* Quinn WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A2E6DFE2305017200764A08 /* Build configuration list for PBXNativeTarget "Quinn WatchKit Extension" */;
+			buildPhases = (
+				9A2E6DEA2305017100764A08 /* Sources */,
+				9A2E6DEB2305017100764A08 /* Frameworks */,
+				9A2E6DEC2305017100764A08 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Quinn WatchKit Extension";
+			productName = "Quinn WatchKit Extension";
+			productReference = 9A2E6DEE2305017100764A08 /* Quinn WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9A2E6DC52305016F00764A08 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1030;
+				LastUpgradeCheck = 1030;
+				ORGANIZATIONNAME = "Smart Commuter Incorporated";
+				TargetAttributes = {
+					9A2E6DCC2305016F00764A08 = {
+						CreatedOnToolsVersion = 10.3;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
+					};
+					9A2E6DDE2305017000764A08 = {
+						CreatedOnToolsVersion = 10.3;
+					};
+					9A2E6DED2305017100764A08 = {
+						CreatedOnToolsVersion = 10.3;
+					};
+				};
+			};
+			buildConfigurationList = 9A2E6DC82305016F00764A08 /* Build configuration list for PBXProject "Quinn" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9A2E6DC42305016F00764A08;
+			productRefGroup = 9A2E6DCE2305016F00764A08 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9A2E6DCC2305016F00764A08 /* Quinn */,
+				9A2E6DDE2305017000764A08 /* Quinn WatchKit App */,
+				9A2E6DED2305017100764A08 /* Quinn WatchKit Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9A2E6DCB2305016F00764A08 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A2E6DDB2305017000764A08 /* LaunchScreen.storyboard in Resources */,
+				9A2E6DD82305017000764A08 /* Assets.xcassets in Resources */,
+				9A2E6DD62305016F00764A08 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A2E6DDD2305017000764A08 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A2E6DE82305017100764A08 /* Assets.xcassets in Resources */,
+				9A2E6DE62305017000764A08 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A2E6DEC2305017100764A08 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A2E6DFA2305017200764A08 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9A2E6DC92305016F00764A08 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A2E6DD32305016F00764A08 /* ViewController.swift in Sources */,
+				9A2E6DD12305016F00764A08 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A2E6DEA2305017100764A08 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A2E6DF62305017100764A08 /* ExtensionDelegate.swift in Sources */,
+				9A2E6DF42305017100764A08 /* InterfaceController.swift in Sources */,
+				9A2E6DF82305017100764A08 /* ComplicationController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9A2E6DE22305017000764A08 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9A2E6DDE2305017000764A08 /* Quinn WatchKit App */;
+			targetProxy = 9A2E6DE12305017000764A08 /* PBXContainerItemProxy */;
+		};
+		9A2E6DF12305017100764A08 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9A2E6DED2305017100764A08 /* Quinn WatchKit Extension */;
+			targetProxy = 9A2E6DF02305017100764A08 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9A2E6DD42305016F00764A08 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9A2E6DD52305016F00764A08 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9A2E6DD92305017000764A08 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9A2E6DDA2305017000764A08 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		9A2E6DE42305017000764A08 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9A2E6DE52305017000764A08 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9A2E6DFC2305017200764A08 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9A2E6DFD2305017200764A08 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9A2E6DFF2305017200764A08 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V7K3K44AG2;
+				INFOPLIST_FILE = "Quinn WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Quinn.Quinn.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.3;
+			};
+			name = Debug;
+		};
+		9A2E6E002305017200764A08 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V7K3K44AG2;
+				INFOPLIST_FILE = "Quinn WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Quinn.Quinn.watchkitapp.watchkitextension;
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.3;
+			};
+			name = Release;
+		};
+		9A2E6E032305017200764A08 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V7K3K44AG2;
+				IBSC_MODULE = Quinn_WatchKit_Extension;
+				INFOPLIST_FILE = "Quinn WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = Quinn.Quinn.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.3;
+			};
+			name = Debug;
+		};
+		9A2E6E042305017200764A08 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V7K3K44AG2;
+				IBSC_MODULE = Quinn_WatchKit_Extension;
+				INFOPLIST_FILE = "Quinn WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = Quinn.Quinn.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.3;
+			};
+			name = Release;
+		};
+		9A2E6E072305017200764A08 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V7K3K44AG2;
+				INFOPLIST_FILE = Quinn/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Quinn.Quinn;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9A2E6E082305017200764A08 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = V7K3K44AG2;
+				INFOPLIST_FILE = Quinn/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Quinn.Quinn;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9A2E6DC82305016F00764A08 /* Build configuration list for PBXProject "Quinn" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A2E6DFC2305017200764A08 /* Debug */,
+				9A2E6DFD2305017200764A08 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9A2E6DFE2305017200764A08 /* Build configuration list for PBXNativeTarget "Quinn WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A2E6DFF2305017200764A08 /* Debug */,
+				9A2E6E002305017200764A08 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9A2E6E022305017200764A08 /* Build configuration list for PBXNativeTarget "Quinn WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A2E6E032305017200764A08 /* Debug */,
+				9A2E6E042305017200764A08 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9A2E6E062305017200764A08 /* Build configuration list for PBXNativeTarget "Quinn" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A2E6E072305017200764A08 /* Debug */,
+				9A2E6E082305017200764A08 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9A2E6DC52305016F00764A08 /* Project object */;
+}
