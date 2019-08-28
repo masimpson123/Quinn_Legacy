@@ -22,10 +22,11 @@ var timeBackDisplay = ""
 var currentLocation = ""
 var quinnMood = 3
 var quinnRationale = ""
-var impDay = "ANALYZING1"
+var impDay = "ANALYZING5"
 var initialization = 0
 var parameterUpdateTimer : Timer?
 var requestCounselTimer : Timer?
+var openingToggle = 0
 
 class InterfaceController: WKInterfaceController {
     
@@ -391,6 +392,11 @@ class InterfaceController: WKInterfaceController {
         requestCounselTimer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(requestCounsel), userInfo: nil, repeats: false)
     }
     
+    @objc func requestCounselAppOpen(_ notification:Notification) {
+        print("requestCounselAppOpen() ran")
+        requestCounsel()
+    }
+    
     @objc func requestCounsel(){
         print("requestCounsel() ran")
         let sessionConfig = URLSessionConfiguration.default
@@ -441,7 +447,7 @@ class InterfaceController: WKInterfaceController {
         if(initialization == 0){
             Timer.scheduledTimer(timeInterval: 2000, target: self, selector: #selector(requestCounsel), userInfo: nil, repeats: true)
             NotificationCenter.default.addObserver(self, selector: #selector(updateHomeInterface(_:)), name: .updateHomeInterface, object: nil)
-            requestCounsel()
+            NotificationCenter.default.addObserver(self, selector: #selector(requestCounselAppOpen(_:)), name: .requestCounselAppOpen, object: nil)
             print("Connecting To Database...")
             let fileURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
                 .appendingPathComponent("test.sqlite")
@@ -458,7 +464,7 @@ class InterfaceController: WKInterfaceController {
             setClientSideVariables()
             initialization=1
             let NOW = Date().timeIntervalSince1970
-            let refreshTime = Date(timeIntervalSince1970: NOW + 60)
+            let refreshTime = Date(timeIntervalSince1970: NOW + 200)
             WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: refreshTime, userInfo: nil) { (error) in
                 if(error)==nil {
                     print("background refresh scheduled")
@@ -472,4 +478,5 @@ class InterfaceController: WKInterfaceController {
 
 extension Notification.Name {
     static let updateHomeInterface = Notification.Name("updateHomeInterface")
+    static let requestCounselAppOpen = Notification.Name("requestCounselAppOpen")
 }
