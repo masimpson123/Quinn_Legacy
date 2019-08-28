@@ -22,7 +22,7 @@ var timeBackDisplay = ""
 var currentLocation = ""
 var quinnMood = 3
 var quinnRationale = ""
-var impDay = "ANALYZING5"
+var impDay = "ANALYZING6"
 var initialization = 0
 var parameterUpdateTimer : Timer?
 var requestCounselTimer : Timer?
@@ -445,7 +445,7 @@ class InterfaceController: WKInterfaceController {
             self.setTitle("Done")
         }
         if(initialization == 0){
-            Timer.scheduledTimer(timeInterval: 2000, target: self, selector: #selector(requestCounsel), userInfo: nil, repeats: true)
+            //Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(requestCounsel), userInfo: nil, repeats: true)
             NotificationCenter.default.addObserver(self, selector: #selector(updateHomeInterface(_:)), name: .updateHomeInterface, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(requestCounselAppOpen(_:)), name: .requestCounselAppOpen, object: nil)
             print("Connecting To Database...")
@@ -463,12 +463,12 @@ class InterfaceController: WKInterfaceController {
             //clearTable()
             setClientSideVariables()
             initialization=1
-            let NOW = Date().timeIntervalSince1970
-            let refreshTime = Date(timeIntervalSince1970: NOW + 200)
-            WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: refreshTime, userInfo: nil) { (error) in
-                if(error)==nil {
-                    print("background refresh scheduled")
-                }
+        }
+        let NOW = Date().timeIntervalSince1970
+        let refreshTime = Date(timeIntervalSince1970: NOW + 60)
+        WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: refreshTime, userInfo: nil) { (error) in
+            if(error)==nil {
+                print("background refresh scheduled")
             }
         }
         drawInterface()

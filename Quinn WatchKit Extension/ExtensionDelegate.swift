@@ -13,11 +13,13 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     var extensionDelegateMood = "analytical"
 
     func applicationDidFinishLaunching() {
+        print("applicationDidFinishLauncing() ran")
         // Perform any final initialization of your application.
     }
 
     func applicationDidBecomeActive() {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        print("applicationDidBecomeActive() ran")
         NotificationCenter.default.post(name: .requestCounselAppOpen, object: nil)
     }
 
@@ -66,10 +68,6 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                                     if(quinnMood == 3){
                                         self.extensionDelegateMood = "analytical"
                                     }
-                                    let server=CLKComplicationServer.sharedInstance()
-                                    for comp in (server.activeComplications!) {
-                                        server.reloadTimeline(for: comp)
-                                    }
                                 }
                             } catch {
                             }
@@ -77,14 +75,21 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                     }
                 }
                 task.resume()
+                NotificationCenter.default.post(name: .requestCounselAppOpen, object: nil)
+                let server=CLKComplicationServer.sharedInstance()
+                if(server.activeComplications != nil){
+                    for comp in (server.activeComplications!) {
+                        server.reloadTimeline(for: comp)
+                    }
+                }
                 let NOW = Date().timeIntervalSince1970
-                let refreshTime = Date(timeIntervalSince1970: NOW + 2000)
+                let refreshTime = Date(timeIntervalSince1970: NOW + 60)
                 WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: refreshTime, userInfo: nil) { (error) in
                     if(error)==nil {
                         print("background refresh scheduled")
                     }
                 }
-                backgroundTask.setTaskCompletedWithSnapshot(false)
+                backgroundTask.setTaskCompletedWithSnapshot(true)
             case let snapshotTask as WKSnapshotRefreshBackgroundTask:
                 // Snapshot tasks have a unique completion call, make sure to set your expiration date
                 snapshotTask.setTaskCompleted(restoredDefaultState: true, estimatedSnapshotExpiration: Date.distantFuture, userInfo: nil)
