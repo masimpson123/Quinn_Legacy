@@ -22,12 +22,12 @@ var timeBackDisplay = ""
 var currentLocation = ""
 var quinnMood = 3
 var quinnRationale = ""
-var impDay = "ANALYZING10"
+var impDay = "ANALYZING_11"
 var initialization = 0
 var parameterUpdateTimer : Timer?
 var requestCounselTimer : Timer?
 var openingToggle = 0
-var updateInterval = 1000
+var updateInterval = 600
 
 class InterfaceController: WKInterfaceController {
     

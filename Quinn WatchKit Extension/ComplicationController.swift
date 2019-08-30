@@ -133,27 +133,24 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
              */
             handler(nil)
         case .graphicBezel:
-            /*
-             let bingo = CLKComplicationTemplateGraphicCircularImage()
-             if(quinnsMood == "happy") {
-             bingo.imageProvider = CLKFullColorImageProvider.init(fullColorImage: UIImage(named: "happyQuinnComplication")!)
-             }
-             if(quinnsMood == "sad") {
-             bingo.imageProvider = CLKFullColorImageProvider.init(fullColorImage: UIImage(named: "sadQuinnComplication")!)
-             }
-             if(quinnsMood == "analytical") {
-             bingo.imageProvider = CLKFullColorImageProvider.init(fullColorImage: UIImage(named: "analyticalQuinnComplication")!)
-             }
-             if(quinnsMood == "broken") {
-             bingo.imageProvider = CLKFullColorImageProvider.init(fullColorImage: UIImage(named: "brokenQuinnComplication")!)
-             }
-             let template = CLKComplicationTemplateGraphicBezelCircularText()
-             template.circularTemplate = bingo
-             template.textProvider = CLKSimpleTextProvider.init(text: "Today")
-             let entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
-             handler(entry)
-             */
-            handler(nil)
+            let graphicCircularTemplate = CLKComplicationTemplateGraphicCircularImage()
+            if(complicationMood == "happy") {
+            graphicCircularTemplate.imageProvider = CLKFullColorImageProvider.init(fullColorImage: UIImage(named: "happyQuinnComplication")!)
+            }
+            if(complicationMood == "sad") {
+            graphicCircularTemplate.imageProvider = CLKFullColorImageProvider.init(fullColorImage: UIImage(named: "sadQuinnComplication")!)
+            }
+            if(complicationMood == "analytical") {
+            graphicCircularTemplate.imageProvider = CLKFullColorImageProvider.init(fullColorImage: UIImage(named: "analyticalQuinnComplication")!)
+            }
+            if(complicationMood == "broken") {
+            graphicCircularTemplate.imageProvider = CLKFullColorImageProvider.init(fullColorImage: UIImage(named: "brokenQuinnComplication")!)
+            }
+            let template = CLKComplicationTemplateGraphicBezelCircularText()
+            template.circularTemplate = graphicCircularTemplate
+            template.textProvider = CLKSimpleTextProvider.init(text: String(maxTemp))
+            let entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
+            handler(entry)
         case .graphicCircular:
             let template = CLKComplicationTemplateGraphicCircularImage()
             if(complicationMood == "happy") {
@@ -229,7 +226,12 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             template = nil
         case .graphicBezel:
             print("Graphic Bezel")
-            template = nil
+            let graphicCircularTemplate = CLKComplicationTemplateGraphicCircularImage()
+            graphicCircularTemplate.imageProvider = CLKFullColorImageProvider.init(fullColorImage: UIImage(named: "analyticalQuinnComplication")!)
+            let graphicBezelTemplate = CLKComplicationTemplateGraphicBezelCircularText()
+            graphicBezelTemplate.circularTemplate = graphicCircularTemplate
+            graphicBezelTemplate.textProvider = CLKSimpleTextProvider.init(text: String(maxTemp))
+            template = graphicBezelTemplate
         case .graphicCircular:
             print("Graphic Circular")
             let graphicCircularTemplate = CLKComplicationTemplateGraphicCircularImage()
@@ -237,6 +239,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             template = graphicCircularTemplate
         case .graphicRectangular:
             print("Graphic Rectangular")
+            template = nil
         @unknown default:
             template = nil
         }
