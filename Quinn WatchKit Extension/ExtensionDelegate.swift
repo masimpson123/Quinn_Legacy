@@ -13,14 +13,14 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     var extensionDelegateMood = "analytical"
 
     func applicationDidFinishLaunching() {
-        print("applicationDidFinishLauncing() ran")
         // Perform any final initialization of your application.
+        print("applicationDidFinishLauncing() ran")
     }
 
     func applicationDidBecomeActive() {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         print("applicationDidBecomeActive() ran")
-        NotificationCenter.default.post(name: .requestCounselAppOpen, object: nil)
+        NotificationCenter.default.post(name: .updateHomeInterface2, object: nil)
     }
 
     func applicationWillResignActive() {
@@ -35,60 +35,31 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             // Use a switch statement to check the task type
             switch task {
             case let backgroundTask as WKApplicationRefreshBackgroundTask:
-                print("Background Task")
-                let sessionConfig = URLSessionConfiguration.default
-                sessionConfig.requestCachePolicy = NSURLRequest.CachePolicy(rawValue: 1)!
-                let session = URLSession.init(configuration: sessionConfig)
-                let url = URL(string: "https://www.michaelsimpsondesign.com/sketches/services/quinn.php?minTemp="+String(minTemp)+"&maxTemp="+String(maxTemp)+"&rainTolerance="+String(rainTolerance)+"&nightRider="+String(nightRider)+"&zipcode="+zipcode+"&timeIn="+String(timeIn)+"&timeOut="+String(timeBack)+"&parameterUpdate=0&maintenance=0")!
-                print(url)
-                let task = session.dataTask(with: url) { (data, response, error) in
-                    if let error = error {
-                        print("error: \(error)")
-                    } else {
-                        if let response = response as? HTTPURLResponse {
-                            print("statusCode: \(response.statusCode)")
-                        }
-                        if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                            print("data: \(dataString)")
-                            do {
-                                if let bingo = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                                    if let mood = bingo["Counsel"] as? String {
-                                        print(mood)
-                                        quinnMood = Int(mood) ?? 0
-                                    }
-                                    if(quinnMood == 0){
-                                        self.extensionDelegateMood = "sad"
-                                    }
-                                    if(quinnMood == 1){
-                                        self.extensionDelegateMood = "happy"
-                                    }
-                                    if(quinnMood == 2){
-                                        self.extensionDelegateMood = "broken"
-                                    }
-                                    if(quinnMood == 3){
-                                        self.extensionDelegateMood = "analytical"
-                                    }
-                                }
-                            } catch {
-                            }
-                        }
-                    }
+                print("background task")
+                if(quinnMood == 0){
+                    extensionDelegateMood = "sad"
                 }
-                task.resume()
-                NotificationCenter.default.post(name: .requestCounselAppOpen, object: nil)
-                let server=CLKComplicationServer.sharedInstance()
-                if(server.activeComplications != nil){
-                    for comp in (server.activeComplications!) {
-                        server.reloadTimeline(for: comp)
-                    }
+                if(quinnMood == 1){
+                    extensionDelegateMood = "happy"
+                }
+                if(quinnMood == 2){
+                    extensionDelegateMood = "broken"
+                }
+                if(quinnMood == 3){
+                    extensionDelegateMood = "analytical"
                 }
                 let NOW = Date().timeIntervalSince1970
-                let refreshTime = Date(timeIntervalSince1970: NOW + 60)
+                let refreshTime = Date(timeIntervalSince1970: NOW + Double(updateInterval))
                 WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: refreshTime, userInfo: nil) { (error) in
                     if(error)==nil {
                         print("background refresh scheduled")
                     }
                 }
+                let server=CLKComplicationServer.sharedInstance()
+                for comp in (server.activeComplications!) {
+                    server.reloadTimeline(for: comp)
+                }
+                NotificationCenter.default.post(name: .updateHomeInterface2, object: nil)
                 backgroundTask.setTaskCompletedWithSnapshot(true)
             case let snapshotTask as WKSnapshotRefreshBackgroundTask:
                 // Snapshot tasks have a unique completion call, make sure to set your expiration date
