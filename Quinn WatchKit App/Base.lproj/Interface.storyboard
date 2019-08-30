@@ -274,10 +274,10 @@
                         <label width="1" height="0.10000000000000001" alignment="left" text="ZIPCODE?" textAlignment="center" id="5TR-XZ-dYw">
                             <fontDescription key="font" type="boldSystem" pointSize="15"/>
                         </label>
-                        <label width="1" height="0.20000000000000001" alignment="left" text="00000" textAlignment="center" id="2VX-lS-Jog">
-                            <fontDescription key="font" type="boldSystem" pointSize="25"/>
+                        <label width="1" height="0.16" alignment="left" text="00000" textAlignment="center" id="2VX-lS-Jog">
+                            <fontDescription key="font" type="system" weight="black" pointSize="20"/>
                         </label>
-                        <group width="1" height="0.14999999999999999" alignment="left" id="wIw-Mg-sLd">
+                        <group width="1" height="0.16" alignment="left" id="wIw-Mg-sLd">
                             <items>
                                 <button width="0.32800000000000001" height="1" alignment="left" verticalAlignment="bottom" title="7" id="v7v-pN-piV">
                                     <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -302,7 +302,7 @@
                                 </button>
                             </items>
                         </group>
-                        <group width="1" height="0.14999999999999999" alignment="left" id="z8g-ZW-7ja">
+                        <group width="1" height="0.16" alignment="left" id="z8g-ZW-7ja">
                             <items>
                                 <button width="0.32800000000000001" height="1" alignment="left" verticalAlignment="bottom" title="4" id="7Cp-Kb-hmp">
                                     <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -327,7 +327,7 @@
                                 </button>
                             </items>
                         </group>
-                        <group width="1" height="0.14999999999999999" alignment="left" id="xIh-hw-0BW">
+                        <group width="1" height="0.16" alignment="left" id="xIh-hw-0BW">
                             <items>
                                 <button width="0.32800000000000001" height="1" alignment="left" verticalAlignment="bottom" title="1" id="XLH-Su-qsP">
                                     <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -352,7 +352,7 @@
                                 </button>
                             </items>
                         </group>
-                        <group width="1" height="0.14999999999999999" alignment="left" id="6Kx-X9-bHS">
+                        <group width="1" height="0.16" alignment="left" id="6Kx-X9-bHS">
                             <items>
                                 <button width="0.33333000000000002" height="1" alignment="center" verticalAlignment="bottom" title="0" id="oHG-mI-2Hv">
                                     <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -396,7 +396,7 @@
                             <fontDescription key="font" type="boldSystem" pointSize="15"/>
                         </label>
                         <label width="1" height="0.40000000000000002" alignment="left" text="0000" textAlignment="center" id="mfM-d3-Bgr">
-                            <fontDescription key="font" type="boldSystem" pointSize="40"/>
+                            <fontDescription key="font" type="boldSystem" pointSize="35"/>
                         </label>
                         <button width="0.80000000000000004" height="0.20000000000000001" alignment="center" verticalAlignment="bottom" title="+0:15" id="ynE-88-LFZ">
                             <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -447,7 +447,7 @@
                             <fontDescription key="font" type="boldSystem" pointSize="15"/>
                         </label>
                         <label width="1" height="0.40000000000000002" alignment="left" text="0000" textAlignment="center" id="2jB-Mz-Vsw">
-                            <fontDescription key="font" type="boldSystem" pointSize="40"/>
+                            <fontDescription key="font" type="boldSystem" pointSize="35"/>
                         </label>
                     </items>
                     <connections>

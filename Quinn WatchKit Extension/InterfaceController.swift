@@ -22,12 +22,12 @@ var timeBackDisplay = ""
 var currentLocation = ""
 var quinnMood = 3
 var quinnRationale = ""
-var impDay = "ANALYZING8"
+var impDay = "ANALYZING10"
 var initialization = 0
 var parameterUpdateTimer : Timer?
 var requestCounselTimer : Timer?
 var openingToggle = 0
-var updateInterval = 900
+var updateInterval = 1000
 
 class InterfaceController: WKInterfaceController {
     
@@ -251,7 +251,6 @@ class InterfaceController: WKInterfaceController {
         }
         returnString.insert(":", at: returnString.index(returnString.startIndex, offsetBy: 2))
         returnString+=suffix
-        print(returnString)
         return returnString
     }
     
@@ -290,23 +289,17 @@ class InterfaceController: WKInterfaceController {
         if timeBackLabel != nil {
             timeBackLabel.setText(parseTime(x: timeBack))
         }
-        if(quinnMood == 0){
-            if QuinnImage != nil {
+        if QuinnImage != nil {
+            if(quinnMood == 0){
                 QuinnImage.setImageNamed("SadQuinn")
             }
-        }
-        if(quinnMood == 1){
-            if QuinnImage != nil {
+            if(quinnMood == 1){
                 QuinnImage.setImageNamed("HappyQuinn")
             }
-        }
-        if(quinnMood == 2){
-            if QuinnImage != nil {
+            if(quinnMood == 2){
                 QuinnImage.setImageNamed("BrokenQuinn")
             }
-        }
-        if(quinnMood == 3){
-            if QuinnImage != nil {
+            if(quinnMood == 3){
                 QuinnImage.setImageNamed("AnalyticalQuinn")
             }
         }
@@ -389,7 +382,8 @@ class InterfaceController: WKInterfaceController {
     override func willActivate() {
         //called during every background refresh
         print("willActivate() ran")
-        addRemoveNotificationObserversScheduleBackgroundRefresh()
+        scheduleBackgroundRefresh()
+        addRemoveNotificationObservers()
     }
     
     override func awake(withContext context: Any?) {
@@ -399,7 +393,8 @@ class InterfaceController: WKInterfaceController {
             self.setTitle("Done")
         }
         if(initialization == 0){
-            addRemoveNotificationObserversScheduleBackgroundRefresh()
+            scheduleBackgroundRefresh()
+            addRemoveNotificationObservers()
             connectDatabase()
             setClientSideVariables()
             initialization=1
@@ -407,13 +402,19 @@ class InterfaceController: WKInterfaceController {
         drawInterface()
     }
     
-    func addRemoveNotificationObserversScheduleBackgroundRefresh() {
-        print("addRemoveNotificationObserversScheduleBackgroundRefresh() ran")
+    func addRemoveNotificationObservers() {
+        print("addRemoveNotificationObservers() ran")
         if Response != nil {
             NotificationCenter.default.removeObserver(self, name: Notification.Name.updateHomeInterface1, object: nil)
             NotificationCenter.default.removeObserver(self, name: Notification.Name.updateHomeInterface2, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(updateHomeInterface1(_:)), name: .updateHomeInterface1, object: nil)
             NotificationCenter.default.addObserver(self, selector: #selector(updateHomeInterface2(_:)), name: .updateHomeInterface2, object: nil)
+        }
+    }
+
+    func scheduleBackgroundRefresh() {
+        print("scheduleBackgroundRefresh() ran")
+        if Response != nil {
             let NOW = Date().timeIntervalSince1970
             let refreshTime = Date(timeIntervalSince1970: NOW + Double(updateInterval))
             WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: refreshTime, userInfo: nil) { (error) in

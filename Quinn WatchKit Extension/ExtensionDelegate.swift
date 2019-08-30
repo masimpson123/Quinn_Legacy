@@ -36,6 +36,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             switch task {
             case let backgroundTask as WKApplicationRefreshBackgroundTask:
                 print("background task")
+                
+                /*
                 if(quinnMood == 0){
                     extensionDelegateMood = "sad"
                 }
@@ -48,6 +50,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 if(quinnMood == 3){
                     extensionDelegateMood = "analytical"
                 }
+                */
+                
                 let NOW = Date().timeIntervalSince1970
                 let refreshTime = Date(timeIntervalSince1970: NOW + Double(updateInterval))
                 WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: refreshTime, userInfo: nil) { (error) in
@@ -55,12 +59,62 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                         print("background refresh scheduled")
                     }
                 }
-                let server=CLKComplicationServer.sharedInstance()
-                for comp in (server.activeComplications!) {
-                    server.reloadTimeline(for: comp)
+                
+                //TEST START
+                print("requestCounsel() ran")
+                let sessionConfig = URLSessionConfiguration.default
+                sessionConfig.requestCachePolicy = NSURLRequest.CachePolicy(rawValue: 1)!
+                let session = URLSession.init(configuration: sessionConfig)
+                let url = URL(string: "https://www.michaelsimpsondesign.com/sketches/services/quinn.php?minTemp="+String(minTemp)+"&maxTemp="+String(maxTemp)+"&rainTolerance="+String(rainTolerance)+"&nightRider="+String(nightRider)+"&zipcode="+zipcode+"&timeIn="+String(timeIn)+"&timeOut="+String(timeBack)+"&parameterUpdate=0&maintenance=0")!
+                print(url)
+                let task = session.dataTask(with: url) { (data, response, error) in
+                    if let error = error {
+                        print("error: \(error)")
+                    } else {
+                        if let response = response as? HTTPURLResponse {
+                            print("statusCode: \(response.statusCode)")
+                        }
+                        if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                            print("data: \(dataString)")
+                            do {
+                                if let microserviceResponse = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                                    if let mood = microserviceResponse["Counsel"] as? String {
+                                        print(mood)
+                                        quinnMood = Int(mood) ?? 2
+                                    }
+                                    if(quinnMood == 0){
+                                        self.extensionDelegateMood = "sad"
+                                    }
+                                    if(quinnMood == 1){
+                                        self.extensionDelegateMood = "happy"
+                                    }
+                                    if(quinnMood == 2){
+                                        self.extensionDelegateMood = "broken"
+                                    }
+                                    if(quinnMood == 3){
+                                        self.extensionDelegateMood = "analytical"
+                                    }
+                                }
+                                backgroundTask.setTaskCompletedWithSnapshot(true)
+                                let server=CLKComplicationServer.sharedInstance()
+                                for comp in (server.activeComplications!) {
+                                    server.reloadTimeline(for: comp)
+                                }
+                            } catch {
+                                backgroundTask.setTaskCompletedWithSnapshot(true)
+                                let server=CLKComplicationServer.sharedInstance()
+                                for comp in (server.activeComplications!) {
+                                    server.reloadTimeline(for: comp)
+                                }
+                            }
+                        }
+                    }
                 }
+                task.resume()
+                //TEST END
+                
                 NotificationCenter.default.post(name: .updateHomeInterface2, object: nil)
-                backgroundTask.setTaskCompletedWithSnapshot(true)
+                //backgroundTask.setTaskCompletedWithSnapshot(true)
             case let snapshotTask as WKSnapshotRefreshBackgroundTask:
                 // Snapshot tasks have a unique completion call, make sure to set your expiration date
                 snapshotTask.setTaskCompleted(restoredDefaultState: true, estimatedSnapshotExpiration: Date.distantFuture, userInfo: nil)
