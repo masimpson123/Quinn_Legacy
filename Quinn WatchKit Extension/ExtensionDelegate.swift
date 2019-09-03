@@ -31,12 +31,10 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     func applicationDidFinishLaunching() {
         // Perform any final initialization of your application.
-        print("applicationDidFinishLauncing() ran")
     }
 
     func applicationDidBecomeActive() {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        print("applicationDidBecomeActive() ran")
         NotificationCenter.default.post(name: .updateHomeInterface2, object: nil)
     }
 
@@ -47,12 +45,10 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     func handle(_ backgroundTasks: Set<WKRefreshBackgroundTask>) {
         // Sent when the system needs to launch the application in the background to process tasks. Tasks arrive in a set, so loop through and process each one.
-        print("handle() ran")
         for task in backgroundTasks {
             // Use a switch statement to check the task type
             switch task {
             case let backgroundTask as WKApplicationRefreshBackgroundTask:
-                print("background task")
                 let NOW = Date().timeIntervalSince1970
                 let refreshTime = Date(timeIntervalSince1970: NOW + Double(updateInterval))
                 WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: refreshTime, userInfo: nil) { (error) in
@@ -66,24 +62,24 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 self.connectDatabase()
                 self.setClientSideVariables()
                 let url = URL(string: "https://www.michaelsimpsondesign.com/sketches/services/quinn.php?minTemp="+String(minTemp)+"&maxTemp="+String(maxTemp)+"&rainTolerance="+String(rainTolerance)+"&nightRider="+String(nightRider)+"&zipcode="+zipcode+"&timeIn="+String(timeIn)+"&timeOut="+String(timeBack)+"&parameterUpdate=0&maintenance=0")!
-                print(url)
                 let task = session.dataTask(with: url) { (data, response, error) in
                     if let error = error {
-                        print("error: \(error)")
+                        print("error:")
+                        print(error)
                     } else {
                         if let response = response as? HTTPURLResponse {
-                            print("statusCode: \(response.statusCode)")
+                            print("statusCode:")
+                            print(response.statusCode)
                         }
                         if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                            print("data: \(dataString)")
+                            print("data: ")
+                            print(dataString)
                             do {
                                 if let microserviceResponse = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                                     if let mood = microserviceResponse["Counsel"] as? String {
-                                        print(mood)
                                         self.quinnMood = Int(mood) ?? 2
                                     }
                                     if let day = microserviceResponse["AnalyzedDay"] as? String {
-                                        print(day)
                                         self.impDay = day.uppercased()
                                     }
                                 }
@@ -143,7 +139,6 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     }
     
     @objc func clearSetParameters(){
-        print("clearSetParameters() ran");
         clearTable()
         let query = "INSERT INTO parameters ('minTemp','maxTemp','rainTolerance','nightRider','zipcode','timeIn','timeBack') VALUES ("+String(minTemp)+","+String(maxTemp)+","+String(rainTolerance)+","+String(nightRider)+","+zipcode+","+String(timeIn)+","+String(timeBack)+")"
         if sqlite3_prepare(db, query, -1, &pointer, nil) != SQLITE_OK{
@@ -155,7 +150,6 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     }
     
     func setClientSideVariables(){
-        print("setClientSideVariables() ran")
         let query = "SELECT * FROM parameters"
         if sqlite3_prepare(db,query,-1,&pointer,nil) == SQLITE_OK {
             while sqlite3_step(pointer) == SQLITE_ROW {
@@ -172,7 +166,6 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     }
     
     func clearTable(){
-        print("clearTable() ran")
         let query = "DELETE FROM parameters"
         if sqlite3_prepare(db, query, -1, &pointer, nil) != SQLITE_OK{
             print("Error Binding Query")

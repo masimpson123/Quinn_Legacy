@@ -204,7 +204,6 @@ class InterfaceController: WKInterfaceController {
     //BUTTONS END
     
     func parseTime(x: Int) -> String{
-        print("parseTime() ran")
         var returnString = ""
         var suffix = ""
         if(x>=1200){
@@ -236,7 +235,6 @@ class InterfaceController: WKInterfaceController {
     }
     
     func drawInterface(){
-        print("drawInterface() ran")
         if minTempLabel != nil {
             minTempLabel.setText(String(exDel.minTemp))
         }
@@ -302,7 +300,6 @@ class InterfaceController: WKInterfaceController {
     }
     
     @objc func updateHomeInterface1(_ notification:Notification) {
-        print("updateHomeInterface1() ran");
         exDel.quinnMood=3
         self.drawInterface()
         parameterUpdateTimer?.invalidate()
@@ -318,39 +315,36 @@ class InterfaceController: WKInterfaceController {
     }
     
     @objc func updateHomeInterface2(_ notification:Notification) {
-        print("updateHomeInterface2() ran")
         self.drawInterface()
         self.requestCounsel()
     }
     
     @objc func requestCounsel(){
-        print("requestCounsel() ran")
         let sessionConfig = URLSessionConfiguration.default
         sessionConfig.requestCachePolicy = NSURLRequest.CachePolicy(rawValue: 1)!
         let session = URLSession.init(configuration: sessionConfig)
         let url = URL(string: "https://www.michaelsimpsondesign.com/sketches/services/quinn.php?minTemp="+String(exDel.minTemp)+"&maxTemp="+String(exDel.maxTemp)+"&rainTolerance="+String(exDel.rainTolerance)+"&nightRider="+String(exDel.nightRider)+"&zipcode="+exDel.zipcode+"&timeIn="+String(exDel.timeIn)+"&timeOut="+String(exDel.timeBack)+"&parameterUpdate=0&maintenance=0")!
-        print(url)
         let task = session.dataTask(with: url) { (data, response, error) in
             if let error = error {
-                print("error: \(error)")
+                print("error: ")
+                print(error)
             } else {
                 if let response = response as? HTTPURLResponse {
-                    print("statusCode: \(response.statusCode)")
+                    print("statusCode: ")
+                    print(response.statusCode)
                 }
                 if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                    print("data: \(dataString)")
+                    print("data: ")
+                    print(dataString)
                     do {
                         if let microserviceResponse = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                             if let mood = microserviceResponse["Counsel"] as? String {
-                                print(mood)
                                 self.exDel.quinnMood = Int(mood) ?? 2
                             }
                             if let day = microserviceResponse["AnalyzedDay"] as? String {
-                                print(day)
                                 self.exDel.impDay = day.uppercased()
                             }
                             if let rationaleTxt = microserviceResponse["Rationale"] as? String {
-                                print(rationaleTxt)
                                 self.exDel.quinnRationale = rationaleTxt.uppercased()
                             }
                             self.drawInterface()
@@ -366,13 +360,11 @@ class InterfaceController: WKInterfaceController {
     
     override func willActivate() {
         //called during every background refresh
-        print("willActivate() ran")
         scheduleBackgroundRefresh()
         addRemoveNotificationObservers()
     }
     
     override func awake(withContext context: Any?) {
-        print("awake() ran")
         super.awake(withContext: context)
         if Response == nil {
             self.setTitle("Done")
@@ -388,7 +380,6 @@ class InterfaceController: WKInterfaceController {
     }
     
     func addRemoveNotificationObservers() {
-        print("addRemoveNotificationObservers() ran")
         if Response != nil {
             NotificationCenter.default.removeObserver(self, name: Notification.Name.updateHomeInterface1, object: nil)
             NotificationCenter.default.removeObserver(self, name: Notification.Name.updateHomeInterface2, object: nil)
@@ -398,7 +389,6 @@ class InterfaceController: WKInterfaceController {
     }
 
     func scheduleBackgroundRefresh() {
-        print("scheduleBackgroundRefresh() ran")
         if Response != nil {
             let NOW = Date().timeIntervalSince1970
             let refreshTime = Date(timeIntervalSince1970: NOW + Double(exDel.updateInterval))
