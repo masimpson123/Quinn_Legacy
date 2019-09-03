@@ -12,8 +12,6 @@ import WatchKit
 
 class ComplicationController: NSObject, CLKComplicationDataSource {
     
-    var analyzedDayBezel = "ANALYZING"
-    
     // MARK: - Timeline Configuration
     
     func getSupportedTimeTravelDirections(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimeTravelDirections) -> Void) {
@@ -149,12 +147,13 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             }
             let template = CLKComplicationTemplateGraphicBezelCircularText()
             template.circularTemplate = graphicCircularTemplate
+            var analyzedDayBezel = ""
             let now = Date().timeIntervalSince1970
             let date = Date(timeIntervalSince1970: now)
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "E MMM dd"
-            let bingo = dateFormatter.string(from: date)
-            if (exDel.impDay != bingo.uppercased()) {
+            let formattedToday = dateFormatter.string(from: date)
+            if (exDel.impDay != formattedToday.uppercased()) {
                 analyzedDayBezel = "TODAY"
             } else {
                 analyzedDayBezel = "TOMORROW"
