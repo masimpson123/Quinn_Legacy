@@ -8,31 +8,12 @@
 
 import WatchKit
 import Foundation
-import SQLite3
-
-var minTemp = 40
-var maxTemp = 110
-var rainTolerance = 1
-var nightRider = 1
-var zipcode = "75039"
-var timeIn = 730
-var timeBack = 1815
-var timeInDisplay = ""
-var timeBackDisplay = ""
-var currentLocation = ""
-var quinnMood = 3
-var quinnRationale = ""
-var impDay = "ANALYZING_11"
-var initialization = 0
-var parameterUpdateTimer : Timer?
-var requestCounselTimer : Timer?
-var openingToggle = 0
-var updateInterval = 600
 
 class InterfaceController: WKInterfaceController {
     
-    var db: OpaquePointer?
-    var pointer: OpaquePointer?
+    let exDel = WKExtension.shared().delegate as! ExtensionDelegate
+    var parameterUpdateTimer : Timer?
+    var requestCounselTimer : Timer?
     
     @IBOutlet weak var minTempLabel: WKInterfaceLabel!
     @IBOutlet weak var maxTempLabel: WKInterfaceLabel!
@@ -53,160 +34,160 @@ class InterfaceController: WKInterfaceController {
     //BUTTONS START
     
     @IBAction func minTempWarmer() {
-        minTemp += 1
+        exDel.minTemp += 1
         drawInterface()
         NotificationCenter.default.post(name: .updateHomeInterface1, object: nil)
     }
     @IBAction func minTempCooler() {
-        minTemp -= 1
+        exDel.minTemp -= 1
         drawInterface()
         NotificationCenter.default.post(name: .updateHomeInterface1, object: nil)
     }
     @IBAction func maxTempWarmer() {
-        maxTemp += 1
+        exDel.maxTemp += 1
         drawInterface()
         NotificationCenter.default.post(name: .updateHomeInterface1, object: nil)
     }
     @IBAction func maxTempCooler() {
-        maxTemp -= 1
+        exDel.maxTemp -= 1
         drawInterface()
         NotificationCenter.default.post(name: .updateHomeInterface1, object: nil)
     }
     @IBAction func rainToleranceYes(_ sender: Any) {
-        rainTolerance = 1
+        exDel.rainTolerance = 1
         drawInterface()
         NotificationCenter.default.post(name: .updateHomeInterface1, object: nil)
     }
     @IBAction func rainToleranceNo(_ sender: Any) {
-        rainTolerance = 0
+        exDel.rainTolerance = 0
         drawInterface()
         NotificationCenter.default.post(name: .updateHomeInterface1, object: nil)
     }
     @IBAction func nightRiderYes(_ sender: Any) {
-        nightRider = 1
+        exDel.nightRider = 1
         drawInterface()
         NotificationCenter.default.post(name: .updateHomeInterface1, object: nil)
     }
     @IBAction func nightRiderNo(_ sender: Any) {
-        nightRider = 0
+        exDel.nightRider = 0
         drawInterface()
         NotificationCenter.default.post(name: .updateHomeInterface1, object: nil)
     }
     @IBAction func key_0() {
-        if(zipcode.count<5){
-            zipcode += "0"
+        if(exDel.zipcode.count<5){
+            exDel.zipcode += "0"
             drawInterface()
             NotificationCenter.default.post(name: .updateHomeInterface1, object: nil)
         }
     }
     @IBAction func key_1() {
-        if(zipcode.count<5){
-            zipcode += "1"
+        if(exDel.zipcode.count<5){
+            exDel.zipcode += "1"
             drawInterface()
             NotificationCenter.default.post(name: .updateHomeInterface1, object: nil)
         }
     }
     @IBAction func key_2() {
-        if(zipcode.count<5){
-            zipcode += "2"
+        if(exDel.zipcode.count<5){
+            exDel.zipcode += "2"
             drawInterface()
             NotificationCenter.default.post(name: .updateHomeInterface1, object: nil)
         }
     }
     @IBAction func key_3() {
-        if(zipcode.count<5){
-            zipcode += "3"
+        if(exDel.zipcode.count<5){
+            exDel.zipcode += "3"
             drawInterface()
             NotificationCenter.default.post(name: .updateHomeInterface1, object: nil)
         }
     }
     @IBAction func key_4() {
-        if(zipcode.count<5){
-            zipcode += "4"
+        if(exDel.zipcode.count<5){
+            exDel.zipcode += "4"
             drawInterface()
             NotificationCenter.default.post(name: .updateHomeInterface1, object: nil)
         }
     }
     @IBAction func key_5() {
-        if(zipcode.count<5){
-            zipcode += "5"
+        if(exDel.zipcode.count<5){
+            exDel.zipcode += "5"
             drawInterface()
             NotificationCenter.default.post(name: .updateHomeInterface1, object: nil)
         }
     }
     @IBAction func key_6() {
-        if(zipcode.count<5){
-            zipcode += "6"
+        if(exDel.zipcode.count<5){
+            exDel.zipcode += "6"
             drawInterface()
             NotificationCenter.default.post(name: .updateHomeInterface1, object: nil)
         }
     }
     @IBAction func key_7() {
-        if(zipcode.count<5){
-            zipcode += "7"
+        if(exDel.zipcode.count<5){
+            exDel.zipcode += "7"
             drawInterface()
             NotificationCenter.default.post(name: .updateHomeInterface1, object: nil)
         }
     }
     @IBAction func key_8() {
-        if(zipcode.count<5){
-            zipcode += "8"
+        if(exDel.zipcode.count<5){
+            exDel.zipcode += "8"
             drawInterface()
             NotificationCenter.default.post(name: .updateHomeInterface1, object: nil)
         }
     }
     @IBAction func key_9() {
-        if(zipcode.count<5){
-            zipcode += "9"
+        if(exDel.zipcode.count<5){
+            exDel.zipcode += "9"
             drawInterface()
             NotificationCenter.default.post(name: .updateHomeInterface1, object: nil)
         }
     }
     @IBAction func key_x(_ sender: Any) {
-        zipcode = ""
+        exDel.zipcode = ""
         drawInterface()
         NotificationCenter.default.post(name: .updateHomeInterface1, object: nil)
     }
     @IBAction func timeInLater() {
-        timeIn += 15
-        if(timeIn % 100 == 60){
-            timeIn += 40
+        exDel.timeIn += 15
+        if(exDel.timeIn % 100 == 60){
+            exDel.timeIn += 40
         }
-        if(timeIn == 2400){
-            timeIn = 0;
+        if(exDel.timeIn == 2400){
+            exDel.timeIn = 0;
         }
         drawInterface()
         NotificationCenter.default.post(name: .updateHomeInterface1, object: nil)
     }
     @IBAction func timeInEarlier() {
-        timeIn -= 15
-        if(timeIn % 100 == 85){
-            timeIn -= 40
+        exDel.timeIn -= 15
+        if(exDel.timeIn % 100 == 85){
+            exDel.timeIn -= 40
         }
-        if(timeIn < 0){
-            timeIn = 2345;
+        if(exDel.timeIn < 0){
+            exDel.timeIn = 2345;
         }
         drawInterface()
         NotificationCenter.default.post(name: .updateHomeInterface1, object: nil)
     }
     @IBAction func timeBackLater() {
-        timeBack += 15
-        if(timeBack % 100 == 60){
-            timeBack += 40
+        exDel.timeBack += 15
+        if(exDel.timeBack % 100 == 60){
+            exDel.timeBack += 40
         }
-        if(timeBack == 2400){
-            timeBack = 0;
+        if(exDel.timeBack == 2400){
+            exDel.timeBack = 0;
         }
         drawInterface()
         NotificationCenter.default.post(name: .updateHomeInterface1, object: nil)
     }
     @IBAction func timeBackEarlier() {
-        timeBack -= 15
-        if(timeBack % 100 == 85){
-            timeBack -= 40
+        exDel.timeBack -= 15
+        if(exDel.timeBack % 100 == 85){
+            exDel.timeBack -= 40
         }
-        if(timeBack < 0){
-            timeBack = 2345;
+        if(exDel.timeBack < 0){
+            exDel.timeBack = 2345;
         }
         drawInterface()
         NotificationCenter.default.post(name: .updateHomeInterface1, object: nil)
@@ -257,13 +238,13 @@ class InterfaceController: WKInterfaceController {
     func drawInterface(){
         print("drawInterface() ran")
         if minTempLabel != nil {
-            minTempLabel.setText(String(minTemp))
+            minTempLabel.setText(String(exDel.minTemp))
         }
         if maxTempLabel != nil {
-            maxTempLabel.setText(String(maxTemp))
+            maxTempLabel.setText(String(exDel.maxTemp))
         }
         if rainToleranceButtons != nil {
-            if(rainTolerance == 1){
+            if(exDel.rainTolerance == 1){
                 rainToleranceButtonYes.setBackgroundColor(UIColor.orange)
                 rainToleranceButtonNo.setBackgroundColor(UIColor.darkGray)
             } else {
@@ -272,7 +253,7 @@ class InterfaceController: WKInterfaceController {
             }
         }
         if nightRiderButtons != nil {
-            if(nightRider==1){
+            if(exDel.nightRider==1){
                 nightRiderButtonYes.setBackgroundColor(UIColor.orange)
                 nightRiderButtonNo.setBackgroundColor(UIColor.darkGray)
             } else {
@@ -281,34 +262,34 @@ class InterfaceController: WKInterfaceController {
             }
         }
         if zipCodeLabel != nil {
-            zipCodeLabel.setText(String(zipcode))
+            zipCodeLabel.setText(String(exDel.zipcode))
         }
         if timeInLabel != nil {
-            timeInLabel.setText(parseTime(x: timeIn))
+            timeInLabel.setText(parseTime(x: exDel.timeIn))
         }
         if timeBackLabel != nil {
-            timeBackLabel.setText(parseTime(x: timeBack))
+            timeBackLabel.setText(parseTime(x: exDel.timeBack))
         }
         if QuinnImage != nil {
-            if(quinnMood == 0){
+            if(exDel.quinnMood == 0){
                 QuinnImage.setImageNamed("SadQuinn")
             }
-            if(quinnMood == 1){
+            if(exDel.quinnMood == 1){
                 QuinnImage.setImageNamed("HappyQuinn")
             }
-            if(quinnMood == 2){
+            if(exDel.quinnMood == 2){
                 QuinnImage.setImageNamed("BrokenQuinn")
             }
-            if(quinnMood == 3){
+            if(exDel.quinnMood == 3){
                 QuinnImage.setImageNamed("AnalyticalQuinn")
             }
         }
         if Response != nil {
-            Response.setText(impDay)
+            Response.setText(exDel.impDay)
         }
         if rationale != nil {
-            rationale.setText(quinnRationale)
-            if(quinnRationale.count>0){
+            rationale.setText(exDel.quinnRationale)
+            if(exDel.quinnRationale.count>0){
                 self.rationale.setRelativeHeight(0.1,withAdjustment: 0)
                 self.QuinnImage.setRelativeHeight(0.61,withAdjustment: 0)
                 self.settingsButton.setRelativeHeight(0.15,withAdjustment: 0)
@@ -322,14 +303,18 @@ class InterfaceController: WKInterfaceController {
     
     @objc func updateHomeInterface1(_ notification:Notification) {
         print("updateHomeInterface1() ran");
-        quinnMood=3
+        exDel.quinnMood=3
         self.drawInterface()
         parameterUpdateTimer?.invalidate()
         parameterUpdateTimer = nil
-        parameterUpdateTimer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(clearSetParameters), userInfo: nil, repeats: false)
+        parameterUpdateTimer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(updateHomeInterface1_helper), userInfo: nil, repeats: false)
         requestCounselTimer?.invalidate()
         requestCounselTimer = nil
         requestCounselTimer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(requestCounsel), userInfo: nil, repeats: false)
+    }
+    
+    @objc func updateHomeInterface1_helper() {
+        exDel.clearSetParameters()
     }
     
     @objc func updateHomeInterface2(_ notification:Notification) {
@@ -343,7 +328,7 @@ class InterfaceController: WKInterfaceController {
         let sessionConfig = URLSessionConfiguration.default
         sessionConfig.requestCachePolicy = NSURLRequest.CachePolicy(rawValue: 1)!
         let session = URLSession.init(configuration: sessionConfig)
-        let url = URL(string: "https://www.michaelsimpsondesign.com/sketches/services/quinn.php?minTemp="+String(minTemp)+"&maxTemp="+String(maxTemp)+"&rainTolerance="+String(rainTolerance)+"&nightRider="+String(nightRider)+"&zipcode="+zipcode+"&timeIn="+String(timeIn)+"&timeOut="+String(timeBack)+"&parameterUpdate=0&maintenance=0")!
+        let url = URL(string: "https://www.michaelsimpsondesign.com/sketches/services/quinn.php?minTemp="+String(exDel.minTemp)+"&maxTemp="+String(exDel.maxTemp)+"&rainTolerance="+String(exDel.rainTolerance)+"&nightRider="+String(exDel.nightRider)+"&zipcode="+exDel.zipcode+"&timeIn="+String(exDel.timeIn)+"&timeOut="+String(exDel.timeBack)+"&parameterUpdate=0&maintenance=0")!
         print(url)
         let task = session.dataTask(with: url) { (data, response, error) in
             if let error = error {
@@ -358,15 +343,15 @@ class InterfaceController: WKInterfaceController {
                         if let microserviceResponse = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                             if let mood = microserviceResponse["Counsel"] as? String {
                                 print(mood)
-                                quinnMood = Int(mood) ?? 2
+                                self.exDel.quinnMood = Int(mood) ?? 2
                             }
                             if let day = microserviceResponse["AnalyzedDay"] as? String {
                                 print(day)
-                                impDay = day.uppercased()
+                                self.exDel.impDay = day.uppercased()
                             }
                             if let rationaleTxt = microserviceResponse["Rationale"] as? String {
                                 print(rationaleTxt)
-                                quinnRationale = rationaleTxt.uppercased()
+                                self.exDel.quinnRationale = rationaleTxt.uppercased()
                             }
                             self.drawInterface()
                         }
@@ -392,12 +377,12 @@ class InterfaceController: WKInterfaceController {
         if Response == nil {
             self.setTitle("Done")
         }
-        if(initialization == 0){
+        if(exDel.initialization == 0){
             scheduleBackgroundRefresh()
             addRemoveNotificationObservers()
-            connectDatabase()
-            setClientSideVariables()
-            initialization=1
+            exDel.connectDatabase()
+            exDel.setClientSideVariables()
+            exDel.initialization=1
         }
         drawInterface()
     }
@@ -416,7 +401,7 @@ class InterfaceController: WKInterfaceController {
         print("scheduleBackgroundRefresh() ran")
         if Response != nil {
             let NOW = Date().timeIntervalSince1970
-            let refreshTime = Date(timeIntervalSince1970: NOW + Double(updateInterval))
+            let refreshTime = Date(timeIntervalSince1970: NOW + Double(exDel.updateInterval))
             WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: refreshTime, userInfo: nil) { (error) in
                 if(error)==nil {
                     print("background refresh scheduled")
@@ -424,64 +409,6 @@ class InterfaceController: WKInterfaceController {
             }
         }
     }
-    
-    //SQLITE CODE START
-    
-    func connectDatabase() {
-        print("Connecting To Database...")
-        let fileURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-            .appendingPathComponent("test.sqlite")
-        if sqlite3_open(fileURL.path, &db) != SQLITE_OK {
-            print("error opening database")
-        }
-        if sqlite3_exec(db, "CREATE TABLE if not exists parameters (id integer primary key autoincrement, minTemp integer, maxTemp integer, rainTolerance integer, nightRider integer, zipcode text, timeIn integer, timeBack integer)", nil, nil, nil) != SQLITE_OK {
-            let errmsg = String(cString: sqlite3_errmsg(db)!)
-            print("error creating table: \(errmsg)")
-        }
-        print("Connected To Database")
-    }
-
-    @objc func clearSetParameters(){
-        print("clearSetParameters() ran");
-        clearTable()
-        let query = "INSERT INTO parameters ('minTemp','maxTemp','rainTolerance','nightRider','zipcode','timeIn','timeBack') VALUES ("+String(minTemp)+","+String(maxTemp)+","+String(rainTolerance)+","+String(nightRider)+","+zipcode+","+String(timeIn)+","+String(timeBack)+")"
-        if sqlite3_prepare(db, query, -1, &pointer, nil) != SQLITE_OK{
-            print("Error Binding Query")
-        }
-        if sqlite3_step(pointer) == SQLITE_DONE {
-            print("We've written to the table!")
-        }
-    }
-
-    func setClientSideVariables(){
-        print("setClientSideVariables() ran")
-        let query = "SELECT * FROM parameters"
-        if sqlite3_prepare(db,query,-1,&pointer,nil) == SQLITE_OK {
-            while sqlite3_step(pointer) == SQLITE_ROW {
-                //let rowID = sqlite3_column_int(pointer, 0)
-                minTemp = Int(sqlite3_column_int(pointer, 1))
-                maxTemp = Int(sqlite3_column_int(pointer, 2))
-                rainTolerance = Int(sqlite3_column_int(pointer, 3))
-                nightRider = Int(sqlite3_column_int(pointer, 4))
-                zipcode = String(cString: sqlite3_column_text(pointer, 5))
-                timeIn = Int(sqlite3_column_int(pointer, 6))
-                timeBack = Int(sqlite3_column_int(pointer, 7))
-            }
-        }
-    }
-    
-    func clearTable(){
-        print("clearTable() ran")
-        let query = "DELETE FROM parameters"
-        if sqlite3_prepare(db, query, -1, &pointer, nil) != SQLITE_OK{
-            print("Error Binding Query")
-        }
-        if sqlite3_step(pointer) == SQLITE_DONE {
-            print("We've cleared the table!")
-        }
-    }
-    
-    //SQLITE CODE END
     
 }
 
