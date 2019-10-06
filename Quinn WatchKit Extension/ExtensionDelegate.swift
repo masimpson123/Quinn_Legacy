@@ -25,7 +25,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     var quinnRationale = ""
     var impDay = "ANALYZING"
     var initialization = 0
-    var updateInterval = 600
+    var updateInterval = 20
     var db: OpaquePointer?
     var pointer: OpaquePointer?
 
@@ -35,12 +35,18 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     func applicationDidBecomeActive() {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        // App Open
         NotificationCenter.default.post(name: .updateHomeInterface2, object: nil)
     }
 
     func applicationWillResignActive() {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, etc.
+        // App Close
+        let server=CLKComplicationServer.sharedInstance()
+        for comp in (server.activeComplications!) {
+            server.reloadTimeline(for: comp)
+        }
     }
 
     func handle(_ backgroundTasks: Set<WKRefreshBackgroundTask>) {
@@ -61,7 +67,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 let session = URLSession.init(configuration: sessionConfig)
                 self.connectDatabase()
                 self.setClientSideVariables()
-                let url = URL(string: "https://www.michaelsimpsondesign.com/sketches/services/quinn.php?minTemp="+String(minTemp)+"&maxTemp="+String(maxTemp)+"&rainTolerance="+String(rainTolerance)+"&nightRider="+String(nightRider)+"&zipcode="+zipcode+"&timeIn="+String(timeIn)+"&timeOut="+String(timeBack)+"&parameterUpdate=0&maintenance=0")!
+                let url = URL(string: "https://www.michaelsimpson.io/sketches/services/quinn.php?minTemp="+String(minTemp)+"&maxTemp="+String(maxTemp)+"&rainTolerance="+String(rainTolerance)+"&nightRider="+String(nightRider)+"&zipcode="+zipcode+"&timeIn="+String(timeIn)+"&timeOut="+String(timeBack)+"&parameterUpdate=0&maintenance=0")!
                 let task = session.dataTask(with: url) { (data, response, error) in
                     if let error = error {
                         print("error:")

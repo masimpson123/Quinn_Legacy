@@ -323,7 +323,8 @@ class InterfaceController: WKInterfaceController {
         let sessionConfig = URLSessionConfiguration.default
         sessionConfig.requestCachePolicy = NSURLRequest.CachePolicy(rawValue: 1)!
         let session = URLSession.init(configuration: sessionConfig)
-        let url = URL(string: "https://www.michaelsimpsondesign.com/sketches/services/quinn.php?minTemp="+String(exDel.minTemp)+"&maxTemp="+String(exDel.maxTemp)+"&rainTolerance="+String(exDel.rainTolerance)+"&nightRider="+String(exDel.nightRider)+"&zipcode="+exDel.zipcode+"&timeIn="+String(exDel.timeIn)+"&timeOut="+String(exDel.timeBack)+"&parameterUpdate=0&maintenance=0")!
+        let url = URL(string: "https://www.michaelsimpson.io/sketches/services/quinn.php?minTemp="+String(exDel.minTemp)+"&maxTemp="+String(exDel.maxTemp)+"&rainTolerance="+String(exDel.rainTolerance)+"&nightRider="+String(exDel.nightRider)+"&zipcode="+exDel.zipcode+"&timeIn="+String(exDel.timeIn)+"&timeOut="+String(exDel.timeBack)+"&parameterUpdate=0&maintenance=0")!
+        print(url)
         let task = session.dataTask(with: url) { (data, response, error) in
             if let error = error {
                 print("error: ")
