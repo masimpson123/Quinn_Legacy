@@ -83,11 +83,11 @@
                     </items>
                     <connections>
                         <outlet property="minTempLabel" destination="zzT-dZ-hV1" id="gNf-NQ-iaI"/>
-                        <segue destination="IJm-Hc-imW" kind="relationship" relationship="nextPage" id="lMl-gj-KXj"/>
+                        <segue destination="IJm-Hc-imW" kind="relationship" relationship="nextPage" id="PcD-8h-kh7"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="310" y="-215"/>
+            <point key="canvasLocation" x="310" y="-214"/>
         </scene>
         <!--MaxTempUI-->
         <scene sceneID="adK-G4-TCm">
@@ -123,11 +123,11 @@
                     </items>
                     <connections>
                         <outlet property="maxTempLabel" destination="jkR-e2-5Lp" id="dgE-Dc-ZgH"/>
-                        <segue destination="xdA-ov-1fa" kind="relationship" relationship="nextPage" id="Yqj-7J-rrc"/>
+                        <segue destination="xdA-ov-1fa" kind="relationship" relationship="nextPage" id="ADz-3X-oja"/>
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="613" y="-215"/>
+            <point key="canvasLocation" x="643" y="-214"/>
         </scene>
         <!--RainToleranceUI-->
         <scene sceneID="PO7-qF-dVl">

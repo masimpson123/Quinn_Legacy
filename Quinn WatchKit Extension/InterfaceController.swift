@@ -366,6 +366,8 @@ class InterfaceController: WKInterfaceController {
     }
     
     override func awake(withContext context: Any?) {
+        print("awake()")
+        print("awake()")
         super.awake(withContext: context)
         if Response == nil {
             self.setTitle("Done")
