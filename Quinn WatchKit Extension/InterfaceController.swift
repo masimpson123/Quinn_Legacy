@@ -316,7 +316,9 @@ class InterfaceController: WKInterfaceController {
     
     @objc func updateHomeInterface2(_ notification:Notification) {
         self.drawInterface()
-        self.requestCounsel()
+        requestCounselTimer?.invalidate()
+        requestCounselTimer = nil
+        requestCounselTimer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(requestCounsel), userInfo: nil, repeats: false)
     }
     
     @objc func requestCounsel(){

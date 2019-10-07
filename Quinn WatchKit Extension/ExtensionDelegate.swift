@@ -25,7 +25,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     var quinnRationale = ""
     var impDay = "ANALYZING"
     var initialization = 0
-    var updateInterval = 20
+    var updateInterval = 600
     var db: OpaquePointer?
     var pointer: OpaquePointer?
 
